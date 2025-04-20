@@ -60,5 +60,4 @@
 ## 📞 ติดต่อ
 - **อีเมล:** [zawawee37@gmail.com](mailto:zawawee37@gmail.com)  
 - **LinkedIn:** [Sawawee Sarehesor](https://www.linkedin.com/in/sawawee-sarehesor-esor-0883b8b2/)  
-- **GitHub:** [GitHub Profile](https://github.com/zawawee37)  
-- **Twitter:** [@zawawee37](https://twitter.com/yourtwitter)  
+- **GitHub:** [GitHub Profile](https://github.com/zawawee37)   
