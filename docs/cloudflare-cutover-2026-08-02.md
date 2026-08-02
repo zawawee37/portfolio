@@ -16,14 +16,15 @@ No signed redirect tokens or session cookies are stored in this record.
 ## Worker versions retained for rollback
 
 - Initial workers.dev deployment: `0a5dbb01-447e-4bbd-bdda-0cafa3b1d798`
-- Verified preview version: `9c75927a-6e37-4642-9cf2-2cf17fbbb7e8`
-- Verified preview URL: `https://9c75927a-sawawee-portfolio.zawawee37.workers.dev`
+- Original verified preview: `9c75927a-6e37-4642-9cf2-2cf17fbbb7e8`
+- Current verified mobile-fix version: `8a1a7726-ad7f-4912-a30c-e218b1714f4e`
+- Current preview URL: `https://8a1a7726-sawawee-portfolio.zawawee37.workers.dev`
 
 The verified preview returned HTTP 200 for English, Thai, resume and sitemap routes, HTTP 404 with the custom page for an unknown route, the intended security headers, and `X-Robots-Tag: noindex`.
 
 ## Cutover status
 
-- The verified version is deployed at 100% of Worker traffic.
+- The mobile-fix version `8a1a7726-ad7f-4912-a30c-e218b1714f4e` is deployed at 100% of Worker traffic.
 - The custom-domain trigger is not attached yet.
 - Cloudflare rejected the custom domain with API error `100117` because the hostname still has externally managed DNS records.
 - The previous Access application still returns HTTP 302 for the production hostname.
