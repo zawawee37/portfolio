@@ -1695,13 +1695,42 @@ html[lang="th"] .contact h2 {
   }
 }
 
+@media (max-width: 900px) {
+  .hero {
+    display: flex;
+    height: auto;
+    min-height: 0;
+    flex-direction: column;
+  }
+
+  .hero::after {
+    background:
+      linear-gradient(180deg, rgba(7, 16, 20, 0.97) 0%, rgba(7, 16, 20, 0.9) 48%, rgba(7, 16, 20, 0.08) 64%, rgba(7, 16, 20, 0.08) 88%, rgba(7, 16, 20, 0.82) 100%),
+      linear-gradient(90deg, rgba(7, 16, 20, 0.5), transparent 88%);
+  }
+
+  .hero-copy {
+    min-height: 0;
+    padding-bottom: 2.25rem;
+  }
+
+  .hero-visual {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    height: clamp(29rem, 128vw, 35rem);
+    flex: 0 0 auto;
+  }
+
+  .hero-visual img {
+    object-position: 60% top;
+  }
+}
+
 @media (max-width: 650px) {
   .brand-name {
     display: none;
-  }
-
-  .hero {
-    min-height: 51rem;
   }
 
   .hero-copy {
@@ -1751,15 +1780,6 @@ html[lang="th"] .contact h2 {
     max-width: 24rem;
     margin-top: 0.8rem;
     font-size: 0.65rem;
-  }
-
-  .hero-visual {
-    top: 30%;
-    bottom: -5%;
-  }
-
-  .hero-visual img {
-    object-position: 62% top;
   }
 
   .scroll-cue {
