@@ -1,0 +1,53 @@
+---
+import type { Locale, SiteContent } from "../content/site";
+
+interface Props {
+  locale: Locale;
+  content: SiteContent;
+}
+
+const { locale, content } = Astro.props;
+const homePath = locale === "th" ? "/th/" : "/";
+const languagePath = locale === "th" ? "/" : "/th/";
+const languageLabel = locale === "th" ? "EN" : "TH";
+---
+
+<header class="site-header" data-header>
+  <div class="header-inner">
+    <a class="brand" href={homePath} aria-label="Sawawee Sareh-esor — Home">
+      <span class="brand-mark" aria-hidden="true">S/</span>
+      <span class="brand-name">Sawawee</span>
+    </a>
+
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-label={content.nav.menu}
+      aria-expanded="false"
+      aria-controls="site-navigation"
+      data-menu-toggle
+    >
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav id="site-navigation" class="site-nav" aria-label="Primary navigation" data-navigation>
+      <a href="#work">{content.nav.work}</a>
+      <a href="#experience">{content.nav.experience}</a>
+      <a href="#capabilities">{content.nav.capabilities}</a>
+      <a href="#contact">{content.nav.contact}</a>
+      <a
+        class="language-link"
+        href={languagePath}
+        lang={locale === "th" ? "en" : "th"}
+        hreflang={locale === "th" ? "en" : "th"}
+        data-language-link
+        data-language={locale === "th" ? "en" : "th"}
+      >
+        <span>{languageLabel}</span>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </nav>
+  </div>
+  <div class="page-progress" aria-hidden="true"><span data-page-progress></span></div>
+</header>

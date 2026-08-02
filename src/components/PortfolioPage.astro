@@ -1,0 +1,370 @@
+---
+import { Picture } from "astro:assets";
+import heroImage from "../assets/sawawee-hero-master.png";
+import type { Locale, SiteContent } from "../content/site";
+import SiteHeader from "./SiteHeader.astro";
+
+interface Props {
+  locale: Locale;
+  content: SiteContent;
+}
+
+const { locale, content } = Astro.props;
+const linkedInArticle =
+  "https://www.linkedin.com/posts/sawawee-sarehesor-esor-0883b8b2_aws-ec2-systemsmanager-activity-7409473382171238401-TLM2";
+---
+
+<SiteHeader locale={locale} content={content} />
+
+<main id="main-content">
+  <section class="hero" aria-labelledby="hero-name">
+    <div class="hero-atmosphere" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <svg class="topology topology-one" viewBox="0 0 1000 800" preserveAspectRatio="none" data-topology>
+        <path d="M-40 590 C170 520 230 250 460 330 S730 680 1050 320" />
+        <path d="M-20 700 C220 640 350 500 520 540 S770 760 1050 520" />
+        <circle cx="462" cy="330" r="5" />
+        <circle cx="520" cy="540" r="5" />
+        <circle cx="785" cy="470" r="5" />
+      </svg>
+      <svg class="topology topology-two" viewBox="0 0 1000 800" preserveAspectRatio="none">
+        <path d="M70 100 L310 100 L380 210 L650 210 L720 90 L960 90" />
+        <path d="M0 260 L210 260 L290 400 L540 400" />
+      </svg>
+    </div>
+
+    <div class="hero-copy">
+      <p class="eyebrow hero-eyebrow" data-hero-enter>{content.hero.eyebrow}</p>
+      <h1 id="hero-name" class="hero-name" data-hero-enter>{content.hero.name}</h1>
+      <p class="hero-role" data-hero-enter>{content.hero.role}</p>
+      <h2 class="hero-headline" data-hero-enter>{content.hero.headline}</h2>
+      <p class="hero-statement" data-hero-enter>{content.hero.statement}</p>
+      <div class="hero-actions" data-hero-enter>
+        <a class="button button-primary" href="mailto:zawawee37@gmail.com">
+          <span>{content.hero.primaryCta}</span><span aria-hidden="true">↗</span>
+        </a>
+        <a class="button button-secondary" href="/resume/Sawawee-Sareh-esor-Resume.pdf" download>
+          <span>{content.hero.secondaryCta}</span><span aria-hidden="true">↓</span>
+        </a>
+      </div>
+      <p class="availability" data-hero-enter>
+        <span class="status-dot" aria-hidden="true"></span>{content.hero.availability}
+      </p>
+    </div>
+
+    <div class="hero-visual" data-hero-visual>
+      <Picture
+        src={heroImage}
+        formats={["avif", "webp"]}
+        fallbackFormat="png"
+        widths={[480, 720, 1024]}
+        sizes="(max-width: 760px) 100vw, 56vw"
+        alt={content.hero.imageAlt}
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <div class="portrait-scan" aria-hidden="true"></div>
+      <div class="portrait-index" aria-hidden="true">
+        <span>SS/08</span>
+        <span>PLATFORM DELIVERY</span>
+      </div>
+    </div>
+
+    <a class="scroll-cue" href="#approach" data-hero-enter>
+      <span>{content.hero.scroll}</span>
+      <span class="scroll-line" aria-hidden="true"></span>
+    </a>
+  </section>
+
+  <section id="approach" class="intro section-pad">
+    <div class="section-grid intro-grid">
+      <p class="eyebrow" data-reveal>{content.intro.eyebrow}</p>
+      <div class="intro-content">
+        <h2 class="display-title" data-reveal>{content.intro.title}</h2>
+        <p class="lead" data-reveal>{content.intro.body}</p>
+        <p class="intro-proof" data-reveal>{content.intro.proof}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="workflow section-pad" aria-labelledby="workflow-title">
+    <div class="section-heading">
+      <p class="eyebrow" data-reveal>{content.workflow.eyebrow}</p>
+      <div>
+        <h2 id="workflow-title" class="display-title" data-reveal>{content.workflow.title}</h2>
+        <p class="section-description" data-reveal>{content.workflow.description}</p>
+      </div>
+    </div>
+    <ol class="workflow-list">
+      {content.workflow.steps.map((step) => (
+        <li data-reveal>
+          <span class="workflow-number">{step.number}</span>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section id="work" class="work section-pad" aria-labelledby="work-title">
+    <div class="section-heading work-heading">
+      <p class="eyebrow" data-reveal>{content.work.eyebrow}</p>
+      <div>
+        <h2 id="work-title" class="display-title" data-reveal>{content.work.title}</h2>
+        <p class="section-description" data-reveal>{content.work.description}</p>
+      </div>
+    </div>
+
+    <div class="case-studies">
+      {content.work.cases.map((study, caseIndex) => (
+        <article class={`case-study case-${study.id}`} aria-labelledby={`case-${study.id}-title`}>
+          <header class="case-header" data-reveal>
+            <div class="case-index">
+              <span>{study.index}</span>
+              <span>{study.eyebrow}</span>
+            </div>
+            <div class="case-title-block">
+              <h3 id={`case-${study.id}-title`}>{study.title}</h3>
+              <p>{study.summary}</p>
+            </div>
+          </header>
+
+          <div class="case-architecture" data-reveal>
+            <div class="architecture-label">
+              <span>{caseIndex === 0 ? "PLATFORM TOPOLOGY" : "DELIVERY FLOW"}</span>
+              <span>0{caseIndex + 1} / 02</span>
+            </div>
+            <ol class="architecture-flow">
+              {study.architecture.map((node, index) => (
+                <li style={`--node-index: ${index}`}>
+                  <span class="architecture-node-dot" aria-hidden="true"></span>
+                  <strong>{node.label}</strong>
+                  <span>{node.detail}</span>
+                </li>
+              ))}
+            </ol>
+            <div class="architecture-pulse" aria-hidden="true"></div>
+          </div>
+
+          <dl class="proof-points" data-reveal>
+            {study.proof.map((proof) => (
+              <div>
+                <dt>{proof.value}</dt>
+                <dd>{proof.label}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div class="case-detail">
+            <div class="case-challenge" data-reveal>
+              <p class="detail-label">{study.challengeLabel}</p>
+              <p>{study.challenge}</p>
+            </div>
+            <div class="case-decisions" data-reveal>
+              <p class="detail-label">{study.decisionLabel}</p>
+              <ul>
+                {study.decisions.map((decision) => <li>{decision}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <footer class="case-footer" data-reveal>
+            <ul class="stack-list" aria-label="Technology stack">
+              {study.stack.map((item) => <li>{item}</li>)}
+            </ul>
+            <a class="text-link" href={study.link} target="_blank" rel="noreferrer">
+              <span>{study.linkLabel}</span><span aria-hidden="true">↗</span>
+            </a>
+          </footer>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="experience" class="experience section-pad" aria-labelledby="experience-title">
+    <div class="section-heading">
+      <p class="eyebrow" data-reveal>{content.experience.eyebrow}</p>
+      <h2 id="experience-title" class="display-title" data-reveal>{content.experience.title}</h2>
+    </div>
+    <ol class="timeline">
+      {content.experience.items.map((item) => (
+        <li data-reveal>
+          <time>{item.period}</time>
+          <div class="timeline-role">
+            <h3>{item.role}</h3>
+            <p class="company">{item.company}</p>
+          </div>
+          <p class="timeline-summary">{item.summary}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section id="capabilities" class="capabilities section-pad" aria-labelledby="capabilities-title">
+    <div class="section-heading">
+      <p class="eyebrow" data-reveal>{content.capabilities.eyebrow}</p>
+      <h2 id="capabilities-title" class="display-title" data-reveal>{content.capabilities.title}</h2>
+    </div>
+    <div class="capability-list">
+      {content.capabilities.groups.map((group, index) => (
+        <div class="capability-row" data-reveal>
+          <span class="capability-index">0{index + 1}</span>
+          <h3>{group.title}</h3>
+          <ul>
+            {group.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="certifications section-pad" aria-labelledby="certifications-title">
+    <div class="section-heading">
+      <p class="eyebrow" data-reveal>{content.certifications.eyebrow}</p>
+      <h2 id="certifications-title" class="display-title" data-reveal>{content.certifications.title}</h2>
+    </div>
+    <ol class="certification-list">
+      {content.certifications.items.map((item, index) => (
+        <li data-reveal>
+          <span>0{index + 1}</span>
+          <p>{item}</p>
+          <span aria-hidden="true">✓</span>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="writing section-pad" aria-labelledby="writing-title">
+    <div class="writing-intro">
+      <p class="eyebrow" data-reveal>{content.writing.eyebrow}</p>
+      <h2 id="writing-title" class="display-title" data-reveal>{content.writing.title}</h2>
+      <p class="section-description" data-reveal>{content.writing.description}</p>
+    </div>
+    <a class="article-feature" href={linkedInArticle} target="_blank" rel="noreferrer" data-reveal>
+      <span class="article-signal" aria-hidden="true">
+        <span></span><span></span><span></span><span></span><span></span>
+      </span>
+      <span class="article-copy">
+        <span class="article-label">{content.writing.articleLabel}</span>
+        <strong>{content.writing.articleTitle}</strong>
+        <span>{content.writing.articleSummary}</span>
+      </span>
+      <span class="article-cta">{content.writing.articleCta} <span aria-hidden="true">↗</span></span>
+    </a>
+  </section>
+
+  <section id="contact" class="contact section-pad" aria-labelledby="contact-title">
+    <div class="contact-signal" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <p class="eyebrow" data-reveal>{content.contact.eyebrow}</p>
+    <h2 id="contact-title" data-reveal>{content.contact.title}</h2>
+    <p class="contact-description" data-reveal>{content.contact.description}</p>
+    <div class="contact-links" data-reveal>
+      <a href="mailto:zawawee37@gmail.com">
+        <span>{content.contact.emailLabel}</span><strong>zawawee37@gmail.com</strong><span aria-hidden="true">↗</span>
+      </a>
+      <a href="tel:+66927994723">
+        <span>{content.contact.phoneLabel}</span><strong>+66 92-799-4723</strong><span aria-hidden="true">↗</span>
+      </a>
+      <a href="https://www.linkedin.com/in/sawawee-sarehesor-esor-0883b8b2/" target="_blank" rel="noreferrer">
+        <span>{content.contact.linkedinLabel}</span><strong>Sawawee Sareh-esor</strong><span aria-hidden="true">↗</span>
+      </a>
+      <a href="https://github.com/zawawee37" target="_blank" rel="noreferrer">
+        <span>{content.contact.githubLabel}</span><strong>@zawawee37</strong><span aria-hidden="true">↗</span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 Sawawee Sareh-esor</p>
+  <p>{content.footer}</p>
+  <a href="#main-content">{locale === "th" ? "กลับด้านบน" : "Back to top"} ↑</a>
+</footer>
+
+<script>
+  const root = document.documentElement;
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  const progress = document.querySelector<HTMLElement>("[data-page-progress]");
+  const heroVisual = document.querySelector<HTMLElement>("[data-hero-visual]");
+  const menuToggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const navigation = document.querySelector<HTMLElement>("[data-navigation]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  const currentLocale = root.dataset.locale === "th" ? "th" : "en";
+  const savedLocale = localStorage.getItem("portfolio-locale");
+  if (window.location.pathname === "/" && savedLocale === "th") {
+    window.location.replace("/th/");
+  } else {
+    localStorage.setItem("portfolio-locale", currentLocale);
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-language-link]").forEach((link) => {
+    link.addEventListener("click", () => {
+      localStorage.setItem("portfolio-locale", link.dataset.language ?? "en");
+    });
+  });
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    menuToggle.setAttribute("aria-expanded", String(!isOpen));
+    navigation?.classList.toggle("is-open", !isOpen);
+    document.body.classList.toggle("menu-open", !isOpen);
+  });
+
+  navigation?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menuToggle?.setAttribute("aria-expanded", "false");
+      navigation.classList.remove("is-open");
+      document.body.classList.remove("menu-open");
+    });
+  });
+
+  const updateScroll = () => {
+    const scrollTop = window.scrollY;
+    const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+    const value = scrollable > 0 ? scrollTop / scrollable : 0;
+    progress?.style.setProperty("transform", `scaleX(${value})`);
+    header?.classList.toggle("is-scrolled", scrollTop > 24);
+
+    if (!reducedMotion && heroVisual && scrollTop < window.innerHeight * 1.1) {
+      heroVisual.style.setProperty("--hero-shift", `${Math.min(scrollTop * 0.08, 54)}px`);
+    }
+  };
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+  updateScroll();
+
+  const revealItems = document.querySelectorAll<HTMLElement>("[data-reveal]");
+  if (reducedMotion || !("IntersectionObserver" in window)) {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  } else {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+    );
+    revealItems.forEach((item) => observer.observe(item));
+  }
+</script>

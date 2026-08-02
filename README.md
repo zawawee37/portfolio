@@ -1,63 +1,44 @@
-# Portfolio - Sawawee Sarehesor
+# Sawawee Sareh-esor — Portfolio
 
-👋 สวัสดีครับผมคือ System Engineer  
-ผมเป็น System Engineer ผู้มีความสามารถและประสบการณ์ในการออกแบบและจัดการระบบไอทีทั้งในด้าน Cloud, Network, DevOps และอื่น ๆ  
+A bilingual, static-first portfolio for a Senior Cloud Platform & Infrastructure Engineer. Built with Astro and deployed as Cloudflare Workers Static Assets.
 
----
+## Local development
 
-## 🙋‍♂️ เกี่ยวกับตัวฉัน
-ผมคือ System Engineer ผู้ที่มีความหลงใหลในเทคโนโลยี โดยเฉพาะการออกแบบและจัดการระบบไอทีที่มีความซับซ้อน เป้าหมายของผมคือการสร้างโซลูชันนวัตกรรมเพื่อช่วยให้องค์กรปรับตัวเข้าสู่ยุคดิจิทัลได้อย่างมีประสิทธิภาพ
+```bash
+npm install
+npm run dev
+```
 
----
+## Quality checks
 
-## 🛠️ ทักษะและความสามารถ
+```bash
+npm run check
+npm test
+```
 
-- **Cloud Platforms:** AWS, Azure 
-- **Operating Systems:** Linux, Windows Server, IBM AIX  
-- **Network:** TCP/IP, DNS, Firewall  
-- **DevOps Tools:** Docker, Kubernetes, Rancher, GitHub, GitLab  
-- **Database Servers:** MySQL, MSSQL, PostgreSQL, Oracle  
-- **Web Content Management Systems (CMS):** WordPress, Joomla, Drupal  
-- **Monitoring Systems:** Zabbix, Grafana, Prometheus  
-- **Web Servers:** Apache, nginx, IIS  
+## Deployment
 
----
+The Cloudflare Worker name is `sawawee-portfolio`. The production custom domain is `portfolio.infratest.click`.
 
-## 💼 โปรเจกต์ตัวอย่าง
-### ระบบจัดการคำขอ Remote Access
-- **รายละเอียด:** ระบบที่ช่วยให้พนักงานสามารถขอสิทธิ์ Remote Access ได้อย่างปลอดภัยและรวดเร็ว  
-- **ความท้าทาย:** การออกแบบระบบที่รองรับผู้ใช้งานจำนวนมากและมีความปลอดภัยสูง  
-- **ผลลัพธ์:** ลดเวลาในการอนุมัติคำขอจาก 3 วันเหลือเพียง 1 ชั่วโมง  
-- **เครื่องมือ:** Docker, Kubernetes, Grafana  
+```bash
+npx wrangler whoami
+npm run deploy:preview
+npm run deploy
+```
 
-### ระบบมอนิเตอร์เซิร์ฟเวอร์
-- **รายละเอียด:** ระบบที่สามารถมอนิเตอร์สถานะเซิร์ฟเวอร์และแจ้งเตือนเมื่อเกิดปัญหา  
-- **เครื่องมือ:** Zabbix, Grafana, Prometheus  
+Cloudflare Workers Builds should use:
 
----
+- Build command: `npm run build`
+- Deploy command: `npx wrangler deploy`
+- Production branch: `main`
+- Node.js: `22`
 
-## 🎓 การศึกษา
-- ปริญญาตรี จาก มหาวิทยาลัยสงขลานครินทร์ วิทยาเขตปัตตานี  
+## Public routes
 
----
+- `/` — English
+- `/th/` — Thai
+- `/resume/Sawawee-Sareh-esor-Resume.pdf`
 
-## 📜 ใบรับรอง
-- **AWS Certified Solutions Architect – Associate**  
-- **Microsoft Certified: Azure Administrtator**  
+## Content policy
 
-
----
-
-## 🌱 สิ่งที่ผมสนใจ
-- การพัฒนาแอปพลิเคชันบนคลาวด์ (Cloud-Native Application)  
-- การทำ Automation ด้วย Python และ Ansible
-- การ Deploy แบบ Automation โดยใช้ CICD 
-- การทดลองเทคโนโลยีใหม่ ๆ เช่น AI และ Machine Learning
-  
-
----
-
-## 📞 ติดต่อ
-- **อีเมล:** [zawawee37@gmail.com](mailto:zawawee37@gmail.com)  
-- **LinkedIn:** [Sawawee Sarehesor](https://www.linkedin.com/in/sawawee-sarehesor-esor-0883b8b2/)  
-- **GitHub:** [GitHub Profile](https://github.com/zawawee37)   
+Only verified public projects are used as case studies. No confidential client or employer infrastructure details are published.
